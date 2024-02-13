@@ -1,11 +1,17 @@
+// App.jsx
 import React from 'react';
-import Routes from './routes';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRoutes from './routes';
+import Header from './components/Header/Header';
 
 const App = () => {
   return (
-    <div className="App">
-      <Routes />
-    </div>
+    <Router basename="/goit-react-hw-05-movies">
+      <div>
+        <Header />
+        <AppRoutes />
+      </div>
+    </Router>
   );
 };
 
