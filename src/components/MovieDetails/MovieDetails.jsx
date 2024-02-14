@@ -1,34 +1,23 @@
-// MovieDetails.jsx
 import React, { useEffect, useState } from 'react';
-import { useParams, Link, Routes, Route } from 'react-router-dom';
-import { getMovieDetails, getMovieCredits, getMovieReviews } from 'api';
+import { useParams, Link, Outlet } from 'react-router-dom';
+import { getMovieDetails } from 'api';
 import styles from './MovieDetails.module.css';
-import Cast from '../Cast/Cast';
-import Reviews from '../Reviews/Reviews';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
-  const [cast, setCast] = useState([]);
-  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    const fetchMovieData = async () => {
+    const fetchMovieDetails = async () => {
       try {
         const details = await getMovieDetails(movieId);
         setMovieDetails(details);
-
-        const credits = await getMovieCredits(movieId);
-        setCast(credits.cast);
-
-        const movieReviews = await getMovieReviews(movieId);
-        setReviews(movieReviews.results);
       } catch (error) {
         console.error('Error fetching movie details:', error);
       }
     };
 
-    fetchMovieData();
+    fetchMovieDetails();
   }, [movieId]);
 
   const handleGoBack = () => {
@@ -58,15 +47,8 @@ const MovieDetails = () => {
           <Link to={`/movies/${movieId}/cast`}>Cast</Link>
           <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
         </div>
+        <Outlet />
       </div>
-
-      <Routes>
-        <Route path="/movies/:movieId/cast" element={<Cast cast={cast} />} />
-        <Route
-          path="/movies/:movieId/reviews"
-          element={<Reviews reviews={reviews} />}
-        />
-      </Routes>
     </div>
   );
 };

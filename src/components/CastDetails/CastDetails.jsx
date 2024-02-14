@@ -1,4 +1,3 @@
-// CastDetails.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCastDetails } from 'api';
@@ -24,7 +23,7 @@ const CastDetails = () => {
     return <div>Loading...</div>;
   }
 
-  return <div>{/* Wyświetl informacje o obsadzie */}</div>;
+  return <div></div>;
 };
 
 export default CastDetails;

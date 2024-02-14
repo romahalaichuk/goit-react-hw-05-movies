@@ -31,7 +31,6 @@ const Cast = () => {
               alt={actor.name}
             />
             <p>{actor.name}</p>
-            {/* Add more details */}
           </div>
         ))}
       </div>

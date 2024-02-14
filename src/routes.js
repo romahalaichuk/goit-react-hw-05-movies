@@ -1,6 +1,5 @@
-// AppRoutes.jsx
-import React, { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { Suspense, lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 const Home = lazy(() => import('./components/Home/Home'));
 const Movies = lazy(() => import('./components/Movies/Movies'));
@@ -16,9 +15,10 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:movieId/*" element={<MovieDetails />} />
-        <Route path="/movies/:movieId/cast" element={<Cast />} />
-        <Route path="/movies/:movieId/reviews" element={<Reviews />} />
+        <Route path="/movies/:movieId" element={<MovieDetails />}>
+          <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
+        </Route>
       </Routes>
     </Suspense>
   );

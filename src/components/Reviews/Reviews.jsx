@@ -28,7 +28,6 @@ const Reviews = () => {
           <div key={review.id} className={styles.review}>
             <h3>{review.author}</h3>
             <p>{review.content}</p>
-            {/* Add more details */}
           </div>
         ))}
       </div>
