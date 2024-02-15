@@ -26,11 +26,14 @@ const Cast = () => {
       <div className={styles.castList}>
         {cast.map(actor => (
           <div key={actor.id} className={styles.actor}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
-              alt={actor.name}
-            />
-            <p>{actor.name}</p>
+            {actor.profile_path && (
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
+                alt={actor.name}
+                className={styles.actorImage}
+              />
+            )}
+            <p className={styles.actorName}>{actor.name}</p>
           </div>
         ))}
       </div>
